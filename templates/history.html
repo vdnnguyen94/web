@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+
+{% block title %}
+   History
+{% endblock %}
+
+{% block main %}
+<table>
+    <tr>
+        <th>Your Account Balance</th>
+        <th>{{ cash }}</th>
+    </tr>
+</table>
+{% if transactions %}
+
+<table class="table table-sm w-50 container">
+    <thead class="table-active">
+        <th>Date and Time</th>
+        <th>Transactions type</th>
+        <th>Symbol</th>
+        <th>Name</th>
+        <th>Shares</th>
+        <th>Unit Price</th>
+        <th>Total Values</th>
+    </thead>
+        {% for transaction in transactions %}
+    <tr class="table-primary">
+        <td> {{ transaction["trans_time"] }}</td>
+        <td> {{ transaction["type"] }}</td>
+        <td> {{ transaction["symbol"] }}</td>
+        <td> {{ transaction["name"] }}</td>
+        <td> {{ transaction["shares"] }}</td>
+        <td> {{ transaction["share_value"] }}</td>
+        <td> {{ transaction["totalvalues"] }}</td>
+    </tr>
+        {% endfor %}
+
+</table>
+{% else %}
+<h1>You haven't made any transactions in your Portfolio</h1>
+{% endif %}
+
+
+{% endblock %}

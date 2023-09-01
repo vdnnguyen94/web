@@ -1,0 +1,19 @@
+{% if symbols %}
+<div class="alert alert-success w-50 container"><h2>Quote Result</h2></div>
+<table class="table table-sm w-50 container">
+    <thead class="table-active">
+        <th>Symbol</th>
+        <th>Name</th>
+        <th>Price</th>
+    </thead>
+
+    <tr class="table-primary">
+        <td> {{ symbols["symbol"] }}</td>
+        <td> {{ symbols["name"] }}</td>
+        <td id="price"> {{ symbols["price"] }}</td>
+    </tr>
+
+</table>
+{% else %}
+<div class="alert alert-danger w-75 container"><h2> Symbol Not Found </h2></div>
+{% endif %}

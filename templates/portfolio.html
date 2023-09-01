@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+
+{% block title %}
+   Your Portfolio
+{% endblock %}
+
+{% block main %}
+<table>
+    <tr>
+        <th>Your Account Balance</th>
+        <th>{{ cash }}</th>
+    </tr>
+</table>
+{% if stocks %}
+
+<table class="table table-sm w-50 container fixt">
+    <thead class="table-active">
+        <th>Symbol</th>
+        <th>Name</th>
+        <th>Shares</th>
+        <th>Unit Price</th>
+        <th>Total Values</th>
+    </thead>
+        {% for stock in stocks %}
+    <tr class="table-primary">
+        <td> {{ stock["symbol"] }}</td>
+        <td> {{ stock["name"] }}</td>
+        <td> {{ stock["shares"] }}</td>
+        <td> {{ stock["price"]}}</td>
+        <td> {{ stock["totalvalue"] }}</td>
+    </tr>
+        {% endfor %}
+    <tr class="table-info">
+        <th class="col-xs-6">Your Stock Worths</th>
+        <th class="col-xs-6">{{ totalvalues }}</th>
+    </tr>
+    <tr class="table-info">
+        <th class="col-xs-6">Your total Asset</th>
+        <th class="col-xs-6">{{ totalassets }}</th>
+    </tr>
+</table>
+{% else %}
+<h1>There is no stock in your account.</h1>
+{% endif %}
+
+
+{% endblock %}

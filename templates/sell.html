@@ -1,0 +1,97 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    SELL
+{% endblock %}
+
+{% block main %}
+<table>
+    <tr>
+        <th>Your Account Balance</th>
+        <th>{{ cash }}</th>
+    </tr>
+</table>
+
+{% if symbols %}
+<h1>Your Sale Has Been Approved</h1>
+<h2>Stock Sale Confirmation</h2>
+<table class="table table-sm w-50 container">
+    <thead class="table-active">
+        <th scope="col">Symbol</th>
+        <th scope="col">Name</th>
+        <th scope="col">Price</th>
+        <th scope="col">Number of Shares</th>
+        <th scope="col">Total Book Cost</th>
+    </thead>
+    <tr class="table-primary">
+        <td> {{ symbols["symbol"] }}</td>
+        <td> {{ symbols["name"] }}</td>
+        <td> {{ symbols["price"] }}</td>
+        <td> {{ shares }}</td>
+        <td> {{ salevalues }}</td>
+    </tr>
+</table>
+{% else %}
+<div id="searchresult">
+</div>
+<form action="/sell" method="post">
+    <div class="mb-3">
+        <label for="symbol" >Stock Symbol</label>
+        <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="symbol" name="symbol" placeholder="Stock Symbol" type="text">
+        <label for="shares" >Number of Shares</label>
+        <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="shares" name="shares" placeholder="Number of Shares" type="text">
+        <label for="bookcost" >Total Book Cost</label>
+        <br>
+        <input id="bookcost" name="bookcost" placeholder="Book Cost" type="text" disabled>
+    </div>
+    <div id="checkprice">Check Price</div>
+    <button class="btn btn-primary" type="submit">Confirmation</button>
+</form>
+        {% if error_message %}
+        <div class="alert alert-danger w-75 container"><h2> {{ error_message }} </h2></div>
+        {% endif %}
+{% if stocks %}
+
+<table class="table table-sm w-50 container">
+    <thead class="table-active">
+        <th>Symbol</th>
+        <th>Name</th>
+        <th>Shares</th>
+    </thead>
+        {% for stock in stocks %}
+    <tr class="table-primary">
+        <td> {{ stock["symbol"] }}</td>
+        <td> {{ stock["name"] }}</td>
+        <td> {{ stock["shares"] }}</td>
+    </tr>
+        {% endfor %}
+</table>
+{% else %}
+<h1>There is no stock in your account.</h1>
+{% endif %}
+
+<script>
+    let checkprice=document.getElementById("checkprice");
+    let symbol=document.getElementById("symbol");
+    let searchresult=document.getElementById("searchresult");
+    let bookcost=document.getElementById("bookcost");
+    let shares=document.getElementById("shares")
+    checkprice.addEventListener('click', async function() {
+        let response = await fetch('/search?q='+ symbol.value);
+        let result = await response.text();
+        searchresult.innerHTML=result;
+        let price=document.getElementById("price");
+        if (price){
+            price=Number(price.innerHTML.substr(2));
+            let totalcost = price*Number(shares.value);
+            bookcost.value=totalcost.toFixed(2);
+        }
+        else{
+            bookcost.value=0;
+        }
+
+    });
+</script>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Stock Quote
+{% endblock %}
+<table>
+    <tr>
+        <th>Your Account Balance</th>
+        <th>{{ cash }}</th>
+    </tr>
+</table>
+{% block main %}
+    <form action="/quote" method="post">
+        <div class="mb-3">
+            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="symbol" name="symbol" placeholder="Stock Symbol" type="text">
+
+        </div>
+        <button class="btn btn-primary" type="submit">Search</button>
+    </form>
+    {% if error_message %}
+    <div class="alert alert-danger w-75 container"><h2> {{ error_message }} </h2></div>
+    {% endif %}
+
+    {% if symbols %}
+    <div class="alert alert-success w-50 container"><h2>Quote Result</h2></div>
+    <table class="table table-sm w-50 container">
+        <thead class="table-active">
+            <th scope="col">Symbol</th>
+            <th scope="col">Name</th>
+            <th scope="col">Price</th>
+        </thead>
+
+        <tr class="table-primary">
+            <td> {{ symbols["symbol"] }}</td>
+            <td> {{ symbols["name"] }}</td>
+            <td> {{ symbols["price"] }}</td>
+        </tr>
+
+    </table>
+    {% endif %}
+{% endblock %}
