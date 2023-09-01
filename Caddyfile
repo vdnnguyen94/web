@@ -1,3 +1,3 @@
-http://15.223.115.28{
+http://15.223.115.28 {
     reverse_proxy localhost:8000
 }
