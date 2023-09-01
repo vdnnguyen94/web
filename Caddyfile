@@ -1,3 +1,6 @@
-http://15.223.115.28 {
+www.vannguyen.dev {
+    redir https://vannguyen.dev{uri}
+}
+vannguyen.dev {
     reverse_proxy localhost:8000
 }
