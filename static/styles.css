@@ -30,18 +30,22 @@ nav .navbar-brand .green
     text-align: center;
     width: 90%;
 }
-table { table-layout: fixed;}
-.fixt { table-layout: fixed;}
 @media (min-width: 320px)
 {
 .screensize0 {
     width: 80%;
     font-size: 10px;
 }
+.scrensize1 {
+    width: 50%;
+}
 }
 @media (min-width: 600px){
 .screensize0 {
         width: 65%;
         font-size: medium;
-    }
+}
+    .scrensize1 {
+        width: 50%;
+}
 }

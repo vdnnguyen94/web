@@ -13,7 +13,7 @@
 </table>
 {% if stocks %}
 
-<table class="table table-sm w-50 container fixt">
+<table class="table table-sm container screensize0">
     <thead class="table-active">
         <th>Symbol</th>
         <th>Name</th>
@@ -22,7 +22,7 @@
         <th>Total Values</th>
     </thead>
         {% for stock in stocks %}
-    <tr class="table-primary">
+    <tr class="table-primary screensize0">
         <td> {{ stock["symbol"] }}</td>
         <td> {{ stock["name"] }}</td>
         <td> {{ stock["shares"] }}</td>
@@ -30,13 +30,13 @@
         <td> {{ stock["totalvalue"] }}</td>
     </tr>
         {% endfor %}
-    <tr class="table-info">
-        <th class="col-xs-6">Your Stock Worths</th>
-        <th class="col-xs-6">{{ totalvalues }}</th>
+    <tr class="table-info screensize0">
+        <th class="col-xs-6 screensize1">Your Stock Worths</th>
+        <th class="col-xs-6 screensize1">{{ totalvalues }}</th>
     </tr>
-    <tr class="table-info">
-        <th class="col-xs-6">Your total Asset</th>
-        <th class="col-xs-6">{{ totalassets }}</th>
+    <tr class="table-info screensize0">
+        <th class="col-xs-6 screensize1">Your total Asset</th>
+        <th class="col-xs-6 screensize1">{{ totalassets }}</th>
     </tr>
 </table>
 {% else %}
