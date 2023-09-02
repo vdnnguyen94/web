@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block main %}
-<table>
+<table class="screensize2">
     <tr>
         <th>Your Account Balance</th>
         <th>{{ cash }}</th>
@@ -48,11 +48,11 @@
     <button class="btn btn-primary" type="submit">Confirmation</button>
 </form>
         {% if error_message %}
-        <div class="alert alert-danger w-75 container"><h2> {{ error_message }} </h2></div>
+        <div class="alert alert-danger w-75 container screensize0"><h2> {{ error_message }} </h2></div>
         {% endif %}
 {% if stocks %}
 
-<table class="table table-sm w-50 container">
+<table class="table table-sm w-50 container screensize0">
     <thead class="table-active">
         <th>Symbol</th>
         <th>Name</th>
