@@ -16,6 +16,7 @@ def get_name(ticker):
     url = f"https://cloud.iexapis.com/stable/stock/{ticker}/company?token={api_key}" # construct the API URL
     response = requests.get(url) # send a GET request to the API URL
     company_name = response.json()["companyName"] # get the company name from the JSON response
+    
     return company_name
 
 def get_name2(ticker):
