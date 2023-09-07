@@ -18,6 +18,16 @@ def get_name(ticker):
     company_name = response.json()["companyName"] # get the company name from the JSON response
     return company_name
 
+def get_name2(ticker):
+    url = f"https://finance.google.com/finance?q={ticker}"
+    res = requests.get(url)
+    content = res.content.decode('utf-8')
+    start_location = content.find('<title>') + len('<title>')
+    end_location = content.find('</title>')
+    title = content[start_location:end_location]
+    company_name = title.split(':')[0]
+    return company_name
+    # Output = 'Microsoft Corporation'
 def apology(message, code=400):
     """Render message as an apology to user."""
     def escape(s):
@@ -73,7 +83,7 @@ def lookup(symbol):
         quotes = list(csv.DictReader(response.content.decode("utf-8").splitlines()))
         quotes.reverse()
         price = round(float(quotes[0]["Adj Close"]), 2)
-        name=get_name(symbol)
+        name=get_name2(symbol)
         return {
             "name": name,
             "price": price,
