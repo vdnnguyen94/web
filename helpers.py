@@ -16,8 +16,6 @@ def get_name(ticker):
     url = f"https://cloud.iexapis.com/stable/stock/{ticker}/company?token={api_key}" # construct the API URL
     response = requests.get(url) # send a GET request to the API URL
     company_name = response.json()["companyName"] # get the company name from the JSON response
-    positionRemove = company_name.find('(')
-    company_name=company_name[:positionRemove]
     return company_name
 
 def get_name2(ticker):
@@ -28,6 +26,8 @@ def get_name2(ticker):
     end_location = content.find('</title>')
     title = content[start_location:end_location]
     company_name = title.split(':')[0]
+    positionRemove = company_name.find('(')
+    company_name=company_name[:positionRemove]
     return company_name
     # Output = 'Microsoft Corporation'
 def apology(message, code=400):
