@@ -110,6 +110,7 @@ def index():
     if stocks:
         for stock in stocks:
             symbol=lookup(stock["symbol"])
+            if symbol is 
             totalvalue=stock["shares"]*symbol["price"]
             totalvalues = totalvalues + totalvalue
             stock.update({"price":usd(symbol["price"])})
