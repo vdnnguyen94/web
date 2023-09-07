@@ -110,11 +110,11 @@ def index():
     if stocks:
         for stock in stocks:
             symbol=lookup(stock["symbol"])
-            if symbol is 
-            totalvalue=stock["shares"]*symbol["price"]
-            totalvalues = totalvalues + totalvalue
-            stock.update({"price":usd(symbol["price"])})
-            stock.update({"totalvalue":usd(totalvalue)})
+            if symbol is not None:
+                totalvalue=stock["shares"]*symbol["price"]
+                totalvalues = totalvalues + totalvalue
+                stock.update({"price":usd(symbol["price"])})
+                stock.update({"totalvalue":usd(totalvalue)})
         totalassets=totalassets+totalvalues
         totalvalues=usd(totalvalues)
     return render_template("portfolio.html",cash=usd(cash), stocks=stocks, totalassets=usd(totalassets), totalvalues=totalvalues)
