@@ -10,7 +10,7 @@ from flask import redirect, render_template, session
 from functools import wraps
 import yfinance as yf
 
-api_key = "sk_93b2b4fc76cb4931a92859fa28da0737" # get your API key from https://iexcloud.io/
+api_key = "sk_fe623fe48b2146298aed76f537378995" # get your API key from https://iexcloud.io/
 
 def get_name(ticker):
     url = f"https://cloud.iexapis.com/stable/stock/{ticker}/company?token={api_key}" # construct the API URL
