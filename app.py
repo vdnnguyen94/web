@@ -106,6 +106,7 @@ def index():
     stocks = db.execute("SELECT * FROM stocks WHERE user_id= ?",id)
     totalassets=cash
     totalvalues=0
+    totalvalue=0
     if stocks:
         for stock in stocks:
             symbol=lookup(stock["symbol"])
