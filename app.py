@@ -21,7 +21,13 @@ Session(app)
 # Configure CS50 Library to use SQLite database
 db = SQL("sqlite:///finance.db")
 
+# Function to remove existing index
+def remove_existing_index():
+    db.execute("DROP INDEX IF EXISTS idx_username;")
 
+# Function to create a new index for registration
+def create_index_for_registration():
+    db.execute("CREATE INDEX IF NOT EXISTS idx_username_register ON users (username);")
 @app.after_request
 def after_request(response):
     """Ensure responses aren't cached"""
@@ -304,11 +310,12 @@ def register():
         # Ensure username does not exist
         if len(rows) >= 1:
             return apology("username already exists", 400)
-
+        # Remove existing index
+        remove_existing_index()
         # INSERT table into USER table & generate hash password
         db.execute("INSERT INTO users (username, hash) VALUES (?, ?)",username,generate_password_hash(password,method='pbkdf2', salt_length=16))
-
-
+        # Create a new index for registration
+        create_index_for_registration()
         # Redirect user to login page
         return redirect("/login")
     else:
