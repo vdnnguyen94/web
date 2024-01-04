@@ -1,6 +1,6 @@
 www.vannguyen.dev {
-    redir https://vannguyen.dev{uri}
+	redir https://vannguyen.dev{uri}
 }
 vannguyen.dev {
-    reverse_proxy localhost:8000
+	reverse_proxy localhost:8000
 }
